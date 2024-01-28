@@ -1,0 +1,44 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    {% spaceless %}
+        {% if not product %}
+            <div class="warning">
+                Все рецепты (товар не указан, либо указан неверно)
+            </div>
+        {% else %}
+            <div>Рецепты без <i>{{ product }}</i>, либо вес этого товара меньше <i>{{ max_weight }}</i> гр</div>
+        {% endif %}
+        {% if not recipes %}
+            <div>Рецепты не найдены</div>
+        {% else %}
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Ингредиенты</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td>{{recipe.id}}</td>
+                        <td>{{ recipe.name }}</td>
+                        <td>
+                            <ul>
+                                {% for ingredient in recipe.ingredients.all %}
+                                    <li>
+                                        {{ ingredient.product }}: {{ ingredient.weight }} гр
+                                        (id={{ ingredient.product.id }})
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
