@@ -16,7 +16,7 @@ poetry run python cookbook/manage.py loaddata --database default sample_data
 poetry run python cookbook/manage.py runserver
 ```
 
-Админка доступна по адресу http://localhost:8000
+Админка доступна по адресу http://localhost:8000/admin/
 
 Логин/пароль администратора сайта: `admin/admin1234`
 
